@@ -28,7 +28,7 @@ public class GameTrackerController {
         } else if (releaseYear != null) {
             gameList = games.findByReleaseYear(releaseYear);
         } else {
-            User savedUser = (User)session.getAttribute("user");
+            User savedUser = (User) session.getAttribute("user");
             if (savedUser != null) {
                 gameList = games.findByUser(savedUser);
             } else {
@@ -38,16 +38,21 @@ public class GameTrackerController {
                 }
             }
         }
-        model.addAttribute("games", gameList);
+        model.addAttribute("getAllGames", gameList);
         return "home";
+    }
+
+    @RequestMapping(path = "/games", method = RequestMethod.GET)
+    public String games(Model model, HttpSession session) {
+        return "games";
     }
 
 
     @RequestMapping(path = "/searchByName", method = RequestMethod.GET)    //Case sensitive
     public String queryGamesByName(Model model, String search) {
-        System.out.println("Searching by ... "  + search);
+        System.out.println("Searching by ... " + search);
         List<Game> gameList = games.findByNameStartsWith(search);
-        model.addAttribute("games", gameList);
+        model.addAttribute("getAllGames", gameList);
         return "home";
     }
 
@@ -86,4 +91,5 @@ public class GameTrackerController {
         session.invalidate();
         return "redirect:/";
     }
+
 }
