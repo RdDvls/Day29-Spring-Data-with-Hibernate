@@ -19,6 +19,7 @@ public class GameTrackerJSONController {
     @Autowired
     GameRepository games;
 
+
     @RequestMapping(path = "/games.json", method = RequestMethod.GET)
     public List<Game> getAllGames() {
 
@@ -58,6 +59,14 @@ public class GameTrackerJSONController {
 
         games.save(game);
 
+        return getAllGames();
+    }
+    @RequestMapping(path = "/deleteGame.json", method = RequestMethod.POST)
+    public List<Game> deleteGame(int gameID)throws Exception{
+        System.out.println("Deleting game with ID: " + gameID);
+        Game game = games.findOne(gameID);
+        games.delete(gameID);
+//        games.save(game);
         return getAllGames();
     }
 

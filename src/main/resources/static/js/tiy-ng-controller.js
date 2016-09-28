@@ -3,7 +3,7 @@ angular.module('TIYAngularApp', [])
          $scope.name = "JavaScript Master Guru";
          $scope.getAllGames = function() {
                     console.log("About to go get me some data!");
-                    $http.get("http://localhost:8080/games.json")
+                          $http.get("http://localhost:8080/games.json")
                         .then(
                             function successCallback(response) {
                                 console.log(response.data);
@@ -13,7 +13,7 @@ angular.module('TIYAngularApp', [])
                             function errorCallback(response) {
                                 console.log("Unable to get data");
                             });
-                };
+                    };
                 $scope.toggleGame = function(gameID) {
                     console.log("About to toggle game with ID " + gameID);
 
@@ -44,5 +44,19 @@ angular.module('TIYAngularApp', [])
                         console.log("Unable to get data");
                         });
                 };
+                $scope.deleteGame = function(gameID){
+                    console.log("About to delete the following game " + gameID);
+
+                    $http.post  ("/deleteGame.json?gameID=" + gameID)
+                    .then(
+                        function success(response){
+                        console.log(response.data);
+                        console.log("Adding data to scope");
+                        $scope.games = response.data;
+                        },
+                        function error(response){
+                        console.log("Error getting data");
+                        });
+                    };
                 $scope.newGame = {};
             });

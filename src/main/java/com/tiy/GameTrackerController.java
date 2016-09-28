@@ -83,7 +83,8 @@ public class GameTrackerController {
             throw new Exception("Incorrect password");
         }
         session.setAttribute("user", user);
-        return "redirect:/";
+//        return "redirect:/";
+        return "redirect:/games";
     }
 
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
