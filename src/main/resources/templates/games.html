@@ -18,7 +18,9 @@
     <span ng-bind="name"></span>
     <input type="button" ng-click="getAllGames()" value="Refresh Game Data"/>
 </div>
-
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
 <div style="position: relative; float: left; width: 100%; padding: 20px;">
     <h1>Enter new game information</h1>
     <span>Game name: <input type="text" ng-model="newGame.name"/></span>
