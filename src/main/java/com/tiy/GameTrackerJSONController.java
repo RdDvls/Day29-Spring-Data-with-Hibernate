@@ -29,9 +29,9 @@ public class GameTrackerJSONController {
             gameList.add(game);
         }
         try {
-            System.out.println("Starting to nap...");
-            Thread.sleep(3000);
-            System.out.println("Nap finished.");
+            System.out.println("Gathering games...");
+            Thread.sleep(1000);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
